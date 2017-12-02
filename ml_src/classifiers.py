@@ -13,6 +13,7 @@ import torch.utils.data as data
 
 import torchvision
 
+use_gpu = False
 try:
     from ml_src.preprocessing import make_dsets, get_label_idx_to_name, image_loader, default_loader, get_transforms
 except ImportError:

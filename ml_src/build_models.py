@@ -3,11 +3,11 @@ from classifiers import get_pretrained_model, create_attributes_model, Attribute
 from utils import is_gpu_available
 
 # Train-Test Split Folders
-SOURCE_DATA_DIR = "data/ClothingAttributeDataset/images/"
-TARGET_DATA_DIR = "data/ClothingAttributeDataset/"
+SOURCE_DATA_DIR = "data/images/"
+TARGET_DATA_DIR = "data/"
 
 # Labels File
-LABEL_DIR = "data/ClothingAttributeDataset/labels/"
+LABEL_DIR = "data/labels/"
 labels_file = "data/labels.csv"
 label_values_file = "data/label_values.json"
 
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     target_dims = get_attribute_dims(label_values_file)
     use_gpu = is_gpu_available()
     pretrained_conv_model, _, _ = get_pretrained_model("vgg16", pop_last_pool_layer=True, use_gpu=use_gpu)
-    train_valid_test_split("data/ClothingAttributeDataset/images/", "data/")
+    train_valid_test_split("data/images/", "data/")
 
     attribute_models = create_attributes_model(AttributeFCN, 512, pretrained_conv_model,
                                     target_dims, 
@@ -33,4 +33,4 @@ if __name__ == "__main__":
                                      VALID_IMAGES_FOLDER,
                                      num_epochs=50,
                                      is_train=True,
-                                     use_gpu=use_gpu)
+                                     use_gpu=False)
