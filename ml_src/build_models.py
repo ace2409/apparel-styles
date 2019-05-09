@@ -33,4 +33,4 @@ if __name__ == "__main__":
                                      VALID_IMAGES_FOLDER,
                                      num_epochs=50,
                                      is_train=True,
-                                     use_gpu=False)
+                                     use_gpu=True)
