@@ -13,7 +13,7 @@ import torch.utils.data as data
 
 import torchvision
 
-use_gpu = False
+use_gpu = True
 try:
     from ml_src.preprocessing import make_dsets, get_label_idx_to_name, image_loader, default_loader, get_transforms
 except ImportError:
@@ -181,8 +181,8 @@ def train_attribute_model(model, pretrained_model, train_dset_loader,
                     optimizer.step()
 
                 # Statistics
-                running_loss += loss.data[0]
-                running_corrects += torch.sum(preds == labels.data)
+                running_loss += loss.data.item()
+                running_corrects += torch.sum(preds == labels.data).item()
 
             epoch_loss = running_loss / dset_sizes[phase]
             epoch_acc = running_corrects / dset_sizes[phase]
